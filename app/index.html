@@ -6,7 +6,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>My AngularJS App</title>
+  <title>BabyNameR</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="app.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-<body>
+<body ng-app="babyNames">
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="collapse navbar-collapse">
@@ -42,5 +42,6 @@
 
 <script src="app.module.js"></script>
 <script src="app.config.js"></script>
+<script src="./components/babyNames/babyNames.directive.js"></script>
 </body>
 </html>
