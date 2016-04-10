@@ -5,7 +5,7 @@ angular.module('babyNames.components')
     .directive('babyNamesList', function(){
         return {
             restrict: 'E',
-            templateUrl: '/app/components/babyNames/babyNames.html',
+            templateUrl: './components/babyNames/babyNames.html',
             controller: 'BabyNamesController',
             controllerAs: 'ctrl'
         }
