@@ -13,7 +13,8 @@ angular.module('babyNames.components')
             {
                 name:'Barry',
                 score:0
-            }];//retrieve these from the server. Node Server hosted on azure eventually.
+            }];
+        //retrieve these from the server. Node Server hosted on azure eventually.
         //MongoDb? For exposure. Or plain old sql server
         // Need DB with Name, User - Need accounts, UserName (UserId, NameId, likeName), CompanionUsers(UserId, UserId) - shared list of names both liked
 
