@@ -47,7 +47,7 @@ gulp.task('lint', () =>
 
 // Optimize images
 gulp.task('images', () =>
-  gulp.src('app/images/**/*')
+  gulp.src('./images/**/*')
     .pipe($.cache($.imagemin({
       progressive: true,
       interlaced: true
@@ -60,6 +60,7 @@ gulp.task('images', () =>
 gulp.task('copy', () =>
   gulp.src([
     'app/*',
+    'index.html',
     '!app/*.html',
     'node_modules/apache-server-configs/dist/.htaccess'
   ], {
@@ -84,8 +85,9 @@ gulp.task('styles', () => {
 
   // For best performance, don't add Sass partials to `gulp.src`
   return gulp.src([
-    'app/styles/**/*.scss',
-    'app/styles/**/*.css'
+    './node_modules/angular-material/angular-material.css',
+    'styles/**/*.scss',
+    'styles/**/*.css'
   ])
     .pipe($.newer('.tmp/styles'))
     .pipe($.sourcemaps.init())
@@ -110,46 +112,74 @@ gulp.task('scripts', () =>
       // Note: Since we are not using useref in the scripts build pipeline,
       //       you need to explicitly list your scripts here in the right order
       //       to be correctly concatenated
-      './app/scripts/main.js'
+      './scripts/main.js',
+      './node_modules/angular/angular.js',
+      './node_modules/angular-route/angular-route.js',
+      './node_modules/angular-aria/angular-aria.js',
+      './node_modules/angular-animate/angular-animate.js',
+      './node_modules/angular-material/angular-material.js',
+      'app/**/*.js'
       // Other scripts
     ])
       .pipe($.newer('.tmp/scripts'))
-      .pipe($.sourcemaps.init())
+      //.pipe($.sourcemaps.init())
       .pipe($.babel())
-      .pipe($.sourcemaps.write())
+      //.pipe($.sourcemaps.write())
       .pipe(gulp.dest('.tmp/scripts'))
-      .pipe($.concat('main.min.js'))
-      .pipe($.uglify({preserveComments: 'some'}))
+      //.pipe($.concat('main.min.js'))
+      //.pipe($.uglify({preserveComments: 'some'}))
       // Output files
       .pipe($.size({title: 'scripts'}))
-      .pipe($.sourcemaps.write('.'))
+      //.pipe($.sourcemaps.write('.'))
       .pipe(gulp.dest('dist/scripts'))
       .pipe(gulp.dest('.tmp/scripts'))
 );
 
+gulp.task('app', () =>
+    gulp.src([
+      'app/**/*.js'
+      // Other scripts
+    ])
+      .pipe($.newer('.tmp/app'))
+      .pipe($.sourcemaps.init())
+      .pipe($.babel())
+      .pipe($.sourcemaps.write())
+      .pipe(gulp.dest('.tmp/app'))
+      //.pipe($.concat('main.min.js'))
+      //.pipe($.uglify({preserveComments: 'some'}))
+      // Output files
+      .pipe($.size({title: 'app'}))
+      .pipe($.sourcemaps.write('.'))
+      .pipe(gulp.dest('dist/app'))
+      .pipe(gulp.dest('.tmp/app'))
+);
+
 // Scan your HTML for assets & optimize them
 gulp.task('html', () => {
-  return gulp.src('app/**/*.html')
+  return gulp.src([
+    //'index.html',
+    'app/**/*.html'
+  ])
     .pipe($.useref({
       searchPath: '{.tmp,app}',
       noAssets: true
     }))
 
     // Minify any HTML
-    .pipe($.if('*.html', $.htmlmin({
-      removeComments: true,
-      collapseWhitespace: true,
-      collapseBooleanAttributes: true,
-      removeAttributeQuotes: true,
-      removeRedundantAttributes: true,
-      removeEmptyAttributes: true,
-      removeScriptTypeAttributes: true,
-      removeStyleLinkTypeAttributes: true,
-      removeOptionalTags: true
-    })))
+    // .pipe($.if('*.html', $.htmlmin({
+    //   removeComments: true,
+    //   collapseWhitespace: true,
+    //   collapseBooleanAttributes: true,
+    //   removeAttributeQuotes: true,
+    //   removeRedundantAttributes: true,
+    //   removeEmptyAttributes: true,
+    //   removeScriptTypeAttributes: true,
+    //   removeStyleLinkTypeAttributes: true,
+    //   removeOptionalTags: true
+    // })))
     // Output files
     .pipe($.if('*.html', $.size({title: 'html', showFiles: true})))
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist/app'));
 });
 
 // Clean output directory
@@ -167,14 +197,14 @@ gulp.task('serve', ['scripts', 'styles'], () => {
     // Note: this uses an unsigned certificate which on first access
     //       will present a certificate warning in the browser.
     // https: true,
-    server: ['.tmp', 'app'],
+    server: ['dist'],
     port: 3000
   });
 
-  gulp.watch(['app/**/*.html'], reload);
-  gulp.watch(['app/styles/**/*.{scss,css}'], ['styles', reload]);
-  gulp.watch(['app/scripts/**/*.js'], ['lint', 'scripts', reload]);
-  gulp.watch(['app/images/**/*'], reload);
+  gulp.watch(['app/**/*'], reload);
+  gulp.watch(['./styles/**/*.{scss,css}'], ['styles', reload]);
+  gulp.watch(['./scripts/**/*.js'], ['lint', 'scripts', reload]);
+  gulp.watch(['./images/**/*'], reload);
 });
 
 // Build and serve the output from the dist build
@@ -197,7 +227,7 @@ gulp.task('serve:dist', ['default'], () =>
 gulp.task('default', ['clean'], cb =>
   runSequence(
     'styles',
-    ['lint', 'html', 'scripts', 'images', 'copy'],
+    ['lint', 'html','app', 'scripts', 'images', 'copy'],
     'generate-service-worker',
     cb
   )
@@ -216,7 +246,7 @@ gulp.task('pagespeed', cb =>
 
 // Copy over the scripts that are used in importScripts as part of the generate-service-worker task.
 gulp.task('copy-sw-scripts', () => {
-  return gulp.src(['node_modules/sw-toolbox/sw-toolbox.js', 'app/scripts/sw/runtime-caching.js'])
+  return gulp.src(['node_modules/sw-toolbox/sw-toolbox.js', './scripts/sw/runtime-caching.js'])
     .pipe(gulp.dest('dist/scripts/sw'));
 });
 
