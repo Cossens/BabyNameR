@@ -118,7 +118,7 @@ gulp.task('scripts', () =>
       './node_modules/angular-aria/angular-aria.js',
       './node_modules/angular-animate/angular-animate.js',
       './node_modules/angular-material/angular-material.js',
-      'app/**/*.js'
+      //'app/**/*.js'
       // Other scripts
     ])
       .pipe($.newer('.tmp/scripts'))
@@ -186,7 +186,7 @@ gulp.task('html', () => {
 gulp.task('clean', () => del(['.tmp', 'dist/*', '!dist/.git'], {dot: true}));
 
 // Watch files for changes & reload
-gulp.task('serve', ['scripts', 'styles'], () => {
+gulp.task('serve', ['default'], () => {
   browserSync({
     notify: false,
     // Customize the Browsersync console logging prefix
