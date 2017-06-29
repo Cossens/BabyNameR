@@ -1,6 +1,0 @@
-<ul class="list-group" ng-repeat="babyName in ctrl.babyNames | filter:ctrl.validNames">
-    <li id="{{babyName.name}}" class="list-group-item">{{babyName.name}}
-        <md-button  class="md-fab md-mini md-primary md-hue-1" ng-click="ctrl.likeName(babyName)"><i class="material-icons">thumb_up</i></md-button>
-      <md-button    class="md-fab md-mini md-primary md-hue-1" ng-click="ctrl.dislikeName(babyName)"><i class="material-icons">thumb_down</i></md-button>
-    </li>
-</ul>
