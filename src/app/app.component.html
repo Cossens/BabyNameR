@@ -1,20 +1,8 @@
 <md-sidenav-container>
   <md-toolbar color="primary">
-    <button md-mini-fab class="app-icon-button" (click)="sidenav.toggle()">
-      <md-icon class="mat-icon material-icons">menu</md-icon>
-    </button>
-     BabyNameR
+    <span>BabyNameR</span>
   </md-toolbar>
-
-  <md-sidenav #sidenav mode="over" class="app-sidenav">
-    Sidenav
-  </md-sidenav>
   <div class="app-content">
-    <md-card>
-      <button md-button>FLAT</button>
-      <button md-raised-button md-tooltip="This is a tooltip!">RAISED</button>
-      <button md-raised-button color="primary">PRIMARY RAISED</button>
-      <button md-raised-button color="accent">ACCENT RAISED</button>
-    </md-card>
+    <app-baby-names></app-baby-names>
   </div>
 </md-sidenav-container>

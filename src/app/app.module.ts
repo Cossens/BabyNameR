@@ -13,10 +13,12 @@ import {
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
+import { BabyNamesComponent } from './baby-names/baby-names.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BabyNamesComponent
   ],
   imports: [
     BrowserModule,
