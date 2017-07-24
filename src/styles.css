@@ -3,3 +3,12 @@
 body{
     margin: 0px;
 }
+md-toolbar{
+    min-height: 50px;    
+}
+md-toolbar-row.mat-toolbar-row{
+    height: 50px; 
+}
+.app-content{
+    padding: 20px;
+}
