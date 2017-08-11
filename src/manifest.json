@@ -1,7 +1,7 @@
 {
     "name": "BabyNameR",
     "short_name": "BabyNameR",
-    "start_url": "/",
+    "start_url": "/index.html",
     "orientation": "portrait",
     "icons": [
         {
