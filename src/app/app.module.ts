@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { Component, NgModule } from '@angular/core';
+
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -14,6 +15,9 @@ import {
 
 import { AppComponent } from './app.component';
 import { BabyNamesComponent } from './baby-names/baby-names.component';
+
+import { ApolloModule } from 'apollo-angular';
+import { provideClient } from './client';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,8 @@ import { BabyNamesComponent } from './baby-names/baby-names.component';
     MdCardModule,
     MdSidenavModule,
     MdToolbarModule,
-    MdIconModule
+    MdIconModule,
+    ApolloModule.forRoot(provideClient)
   ],
   providers: [],
   bootstrap: [AppComponent]

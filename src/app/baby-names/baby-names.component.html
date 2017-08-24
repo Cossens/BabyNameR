@@ -3,6 +3,8 @@
     <md-card-title>My Names</md-card-title>
   </md-card-header>
   <md-card-content>
-    <p>Content!</p>
+    <div *ngFor="let nameNode for allNames">
+      <pre>{{nameNode | json}}</pre>
+    </div>
   </md-card-content>
 </md-card>
