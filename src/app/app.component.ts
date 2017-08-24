@@ -1,12 +1,10 @@
 import { Component, NgModule } from '@angular/core';
 
-import { CommonModule } from '@angular/common';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: [
-    './app.component.css', 
+    './app.component.css',
     '../../node_modules/@angular/material/prebuilt-themes/indigo-pink.css']
 })
 export class AppComponent {

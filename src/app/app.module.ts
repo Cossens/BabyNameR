@@ -3,13 +3,13 @@ import { Component, NgModule } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MdButtonModule, 
-  MdCheckboxModule, 
-  MdCardModule, 
-  MdSidenavModule, 
-  MdToolbarModule, 
+  MdButtonModule,
+  MdCheckboxModule,
+  MdCardModule,
+  MdSidenavModule,
+  MdToolbarModule,
   MdIconModule
 } from '@angular/material';
 
@@ -29,7 +29,7 @@ import { provideClient } from './client';
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    MdButtonModule, 
+    MdButtonModule,
     MdCheckboxModule,
     MdCardModule,
     MdSidenavModule,

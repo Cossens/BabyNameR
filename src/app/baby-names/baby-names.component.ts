@@ -1,5 +1,4 @@
-import { Component, NgModule, OnInit, OnDestroy } from '@angular/core';
-import {CommonModule} from '@angular/common';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -41,14 +40,14 @@ export class BabyNamesComponent implements OnInit, OnDestroy {
   allNames: any;
   allNamesSub: Subscription;
 
-  
+
   constructor(
     private apollo: Apollo
-  ) {}
+  ) { }
 
   setImage(url: string) {
     const styles = {
-      'background-image':  `url(${url})`,
+      'background-image': `url(${url})`,
       'background-size': 'cover',
       'padding-bottom': '100%',
     };
@@ -83,11 +82,11 @@ export class BabyNamesComponent implements OnInit, OnDestroy {
     console.log(allNamesQuery);
     this.allNamesSub = this.apollo.watchQuery({
       query: allNamesQuery
-    }).subscribe(({data, loading}: any) => {
+    }).subscribe(({ data, loading }: any) => {
       console.log(data);
 
-      //this.allNames = data.viewer.allBabyNames.edges;
-      this.allNames = ['first', 'second'];
+      this.allNames = data.viewer.allBabyNames.edges;
+
       this.loading = loading;
     });
   }
